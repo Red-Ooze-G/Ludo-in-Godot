@@ -1,0 +1,453 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg3gem8xamyl7"]
+
+[ext_resource type="Script" path="res://Scripts/first_map.gd" id="1_qa3ad"]
+[ext_resource type="PackedScene" uid="uid://bp1qg2obgc2vp" path="res://Scenes/dice.tscn" id="2_cskjd"]
+[ext_resource type="Texture2D" uid="uid://dwl0v7bwtrafm" path="res://Assets/ludo_board.png" id="3_or7sq"]
+[ext_resource type="PackedScene" uid="uid://bwjct7is63sgs" path="res://Scenes/game_piece.tscn" id="4_4chbn"]
+[ext_resource type="PackedScene" uid="uid://8c7qlmal6uwj" path="res://Scenes/spot.tscn" id="5_2exf2"]
+[ext_resource type="PackedScene" uid="uid://d1vi32omxgqd4" path="res://Scenes/rigged_dice.tscn" id="6_yp17h"]
+
+[node name="FirstMap" type="Node2D"]
+script = ExtResource("1_qa3ad")
+
+[node name="LudoBoard" type="Sprite2D" parent="."]
+position = Vector2(490, 490)
+texture = ExtResource("3_or7sq")
+metadata/_edit_lock_ = true
+
+[node name="Dice" parent="." instance=ExtResource("2_cskjd")]
+position = Vector2(490, 491)
+metadata/_edit_lock_ = true
+
+[node name="Game Piece" parent="." node_paths=PackedStringArray("respawn_marker") instance=ExtResource("4_4chbn")]
+position = Vector2(196, 270)
+respawn_marker = NodePath("../Spots/Red1")
+unit_affiliation = "red"
+
+[node name="Game Piece3" parent="." node_paths=PackedStringArray("respawn_marker") instance=ExtResource("4_4chbn")]
+position = Vector2(272, 194)
+respawn_marker = NodePath("../Spots/Red2")
+unit_affiliation = "red"
+
+[node name="Game Piece4" parent="." node_paths=PackedStringArray("respawn_marker") instance=ExtResource("4_4chbn")]
+position = Vector2(710, 784)
+respawn_marker = NodePath("../Spots/GRN_START_2")
+unit_affiliation = "green"
+
+[node name="Game Piece2" parent="." node_paths=PackedStringArray("respawn_marker") instance=ExtResource("4_4chbn")]
+position = Vector2(799, 707)
+respawn_marker = NodePath("../Spots/GRN_START_1")
+unit_affiliation = "green"
+
+[node name="Spots" type="Node" parent="."]
+
+[node name="Red1" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(195, 115)
+next_tile = NodePath("../RedSAFE")
+
+[node name="Red2" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(116, 192)
+next_tile = NodePath("../RedSAFE")
+
+[node name="Red3" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(268, 194)
+next_tile = NodePath("../RedSAFE")
+
+[node name="Red4" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(197, 272)
+next_tile = NodePath("../RedSAFE")
+
+[node name="RedSAFE" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(98, 420)
+tile_type = 1
+next_tile = NodePath("../Path1")
+
+[node name="Path1" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(163, 420)
+next_tile = NodePath("../Path2")
+
+[node name="Path2" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(225, 419)
+next_tile = NodePath("../Path3")
+
+[node name="Path3" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(288, 419)
+next_tile = NodePath("../Path4")
+
+[node name="Path4" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(351, 419)
+next_tile = NodePath("../Path5")
+
+[node name="Path5" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(415, 352)
+next_tile = NodePath("../Path6")
+
+[node name="Path6" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(417, 291)
+next_tile = NodePath("../Path7")
+
+[node name="Path7" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(416, 227)
+next_tile = NodePath("../Path8")
+
+[node name="Path8" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(420, 164)
+next_tile = NodePath("../Path9")
+
+[node name="Path9" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(416, 101)
+next_tile = NodePath("../Path10")
+
+[node name="Path10" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(415, 36)
+next_tile = NodePath("../PRP Fork")
+
+[node name="PRP Fork" parent="Spots" node_paths=PackedStringArray("next_tile", "alt_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(487, 31)
+next_tile = NodePath("../Path11")
+alt_tile = NodePath("../PRP_VIC_ROD_1")
+alt_tile_affiliation = "purple"
+
+[node name="Path11" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(563, 35)
+next_tile = NodePath("../PRP_SAFE")
+
+[node name="PRP1" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(786, 115)
+next_tile = NodePath("../PRP_SAFE")
+
+[node name="PRP2" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(711, 199)
+next_tile = NodePath("../PRP_SAFE")
+
+[node name="PRP3" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(866, 194)
+next_tile = NodePath("../PRP_SAFE")
+
+[node name="PRP4" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(787, 265)
+next_tile = NodePath("../PRP_SAFE")
+
+[node name="PRP_SAFE" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(561, 97)
+tile_type = 1
+next_tile = NodePath("../Path12")
+
+[node name="Path12" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(564, 161)
+next_tile = NodePath("../Path13")
+
+[node name="Path13" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(564, 219)
+next_tile = NodePath("../Path14")
+
+[node name="Path14" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(564, 285)
+next_tile = NodePath("../Path15")
+
+[node name="Path15" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(562, 348)
+next_tile = NodePath("../Path16")
+
+[node name="Path16" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(627, 413)
+next_tile = NodePath("../Path17")
+
+[node name="Path17" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(691, 414)
+next_tile = NodePath("../Path18")
+
+[node name="Path18" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(753, 415)
+next_tile = NodePath("../Path19")
+
+[node name="Path19" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(817, 418)
+next_tile = NodePath("../Path20")
+
+[node name="Path20" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(880, 418)
+next_tile = NodePath("../Path21")
+
+[node name="Path21" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(945, 416)
+next_tile = NodePath("../GRN_FORK")
+
+[node name="GRN_FORK" parent="Spots" node_paths=PackedStringArray("next_tile", "alt_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(953, 493)
+next_tile = NodePath("../Path22")
+alt_tile = NodePath("../GRN_V_ROD_1")
+alt_tile_affiliation = "green"
+
+[node name="Path22" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(949, 557)
+next_tile = NodePath("../GRN_SAFE")
+
+[node name="GRN_START_1" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(784, 709)
+next_tile = NodePath("../Path1")
+
+[node name="GRN_START_2" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(712, 786)
+next_tile = NodePath("../GRN_SAFE")
+
+[node name="GRN_START_3" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(868, 785)
+next_tile = NodePath("../GRN_SAFE")
+
+[node name="GRN_START_4" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(787, 869)
+next_tile = NodePath("../GRN_SAFE")
+
+[node name="GRN_SAFE" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(882, 562)
+tile_type = 1
+next_tile = NodePath("../Path23")
+
+[node name="Path23" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(818, 563)
+next_tile = NodePath("../Path24")
+
+[node name="Path24" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(756, 562)
+next_tile = NodePath("../Path25")
+
+[node name="Path25" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(696, 563)
+next_tile = NodePath("../Path26")
+
+[node name="Path26" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(630, 562)
+next_tile = NodePath("../Path27")
+
+[node name="Path27" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(563, 633)
+next_tile = NodePath("../Path28")
+
+[node name="Path28" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(560, 695)
+next_tile = NodePath("../Path29")
+
+[node name="Path29" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(560, 755)
+next_tile = NodePath("../Path30")
+
+[node name="Path30" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(563, 822)
+next_tile = NodePath("../Path31")
+
+[node name="Path31" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(562, 877)
+next_tile = NodePath("../Path32")
+
+[node name="Path32" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(562, 949)
+next_tile = NodePath("../ONG_FORK")
+
+[node name="ONG_FORK" parent="Spots" node_paths=PackedStringArray("next_tile", "alt_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(490, 950)
+next_tile = NodePath("../Path33")
+alt_tile = NodePath("../ONG_V_ROD_1")
+alt_tile_affiliation = "orange"
+
+[node name="Path33" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(418, 949)
+next_tile = NodePath("../ONG_SAFE")
+
+[node name="ONG_SAFE" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(417, 883)
+tile_type = 1
+next_tile = NodePath("../Path34")
+
+[node name="ONG_START_!" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(198, 712)
+next_tile = NodePath("../ONG_SAFE")
+
+[node name="ONG_START_!2" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(117, 785)
+next_tile = NodePath("../ONG_SAFE")
+
+[node name="ONG_START_!3" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(268, 786)
+next_tile = NodePath("../ONG_SAFE")
+
+[node name="ONG_START_!4" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(195, 865)
+next_tile = NodePath("../ONG_SAFE")
+
+[node name="Path34" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(417, 820)
+next_tile = NodePath("../Path35")
+
+[node name="Path35" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(416, 763)
+next_tile = NodePath("../Path36")
+
+[node name="Path36" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(415, 689)
+next_tile = NodePath("../Path37")
+
+[node name="Path37" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(416, 630)
+next_tile = NodePath("../Path38")
+
+[node name="Path38" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(350, 566)
+next_tile = NodePath("../Path39")
+
+[node name="Path39" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(277, 566)
+next_tile = NodePath("../Path40")
+
+[node name="Path40" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(220, 565)
+next_tile = NodePath("../Path41")
+
+[node name="Path41" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(157, 564)
+next_tile = NodePath("../Path42")
+
+[node name="Path42" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(99, 564)
+next_tile = NodePath("../Path43")
+
+[node name="Path43" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(32, 567)
+next_tile = NodePath("../RED_FORK")
+
+[node name="RED_FORK" parent="Spots" node_paths=PackedStringArray("next_tile", "alt_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(31, 491)
+next_tile = NodePath("../Path44")
+alt_tile = NodePath("../RED_VIC_ROD_1")
+alt_tile_affiliation = "red"
+
+[node name="Path44" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(32, 418)
+next_tile = NodePath("../RedSAFE")
+
+[node name="RED_VIC_ROD_1" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(96, 491)
+next_tile = NodePath("../RED_VIC_ROD_2")
+
+[node name="RED_VIC_ROD_2" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(161, 494)
+next_tile = NodePath("../RED_VIC_ROD_3")
+
+[node name="RED_VIC_ROD_3" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(225, 494)
+next_tile = NodePath("../RED_VIC_ROD_4")
+
+[node name="RED_VIC_ROD_4" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(284, 491)
+next_tile = NodePath("../RED_VIC_ROD_5")
+
+[node name="RED_VIC_ROD_5" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(349, 491)
+next_tile = NodePath("../RED_END")
+
+[node name="RED_END" parent="Spots" instance=ExtResource("5_2exf2")]
+position = Vector2(422, 492)
+tile_type = 2
+
+[node name="PRP_VIC_ROD_1" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(486, 98)
+next_tile = NodePath("../PRP_VIC_ROD_2")
+
+[node name="PRP_VIC_ROD_2" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(487, 160)
+next_tile = NodePath("../PRP_VIC_ROD_3")
+
+[node name="PRP_VIC_ROD_3" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(489, 224)
+next_tile = NodePath("../PRP_VIC_ROD_4")
+
+[node name="PRP_VIC_ROD_4" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(489, 286)
+next_tile = NodePath("../PRP_VIC_ROD_5")
+
+[node name="PRP_VIC_ROD_5" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(492, 352)
+next_tile = NodePath("../PRP_END")
+
+[node name="PRP_END" parent="Spots" instance=ExtResource("5_2exf2")]
+position = Vector2(493, 423)
+tile_type = 2
+
+[node name="GRN_V_ROD_1" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(881, 490)
+next_tile = NodePath("../GRN_V_ROD_2")
+
+[node name="GRN_V_ROD_2" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(819, 490)
+next_tile = NodePath("../GRN_V_ROD_3")
+
+[node name="GRN_V_ROD_3" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(758, 494)
+next_tile = NodePath("../GRN_V_ROD_4")
+
+[node name="GRN_V_ROD_4" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(697, 491)
+next_tile = NodePath("../GRN_V_ROD_5")
+
+[node name="GRN_V_ROD_5" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(632, 493)
+next_tile = NodePath("../GRN_END")
+
+[node name="GRN_END" parent="Spots" instance=ExtResource("5_2exf2")]
+position = Vector2(564, 496)
+tile_type = 2
+
+[node name="ONG_V_ROD_1" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(492, 880)
+next_tile = NodePath("../ONG_V_ROD_2")
+
+[node name="ONG_V_ROD_2" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(489, 820)
+next_tile = NodePath("../ONG_V_ROD_3")
+
+[node name="ONG_V_ROD_3" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(492, 762)
+next_tile = NodePath("../ONG_V_ROD_4")
+
+[node name="ONG_V_ROD_4" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(491, 694)
+next_tile = NodePath("../ONG_V_ROD_5")
+
+[node name="ONG_V_ROD_5" parent="Spots" node_paths=PackedStringArray("next_tile") instance=ExtResource("5_2exf2")]
+position = Vector2(491, 634)
+next_tile = NodePath("../ONG_END")
+
+[node name="ONG_END" parent="Spots" instance=ExtResource("5_2exf2")]
+position = Vector2(491, 562)
+tile_type = 2
+
+[node name="Rigged" type="Node" parent="."]
+
+[node name="Dice2" parent="Rigged" instance=ExtResource("6_yp17h")]
+position = Vector2(96, 27)
+dice_value = 1
+
+[node name="Dice3" parent="Rigged" instance=ExtResource("6_yp17h")]
+position = Vector2(123, 28)
+dice_value = 2
+
+[node name="Dice4" parent="Rigged" instance=ExtResource("6_yp17h")]
+position = Vector2(157, 18)
+dice_value = 3
+
+[node name="Dice5" parent="Rigged" instance=ExtResource("6_yp17h")]
+position = Vector2(193, 17)
+dice_value = 4
+
+[node name="Dice6" parent="Rigged" instance=ExtResource("6_yp17h")]
+position = Vector2(236, 22)
+dice_value = 5
+
+[node name="Dice7" parent="Rigged" instance=ExtResource("6_yp17h")]
+position = Vector2(269, 33)
+dice_value = 6
+
+[connection signal="turn_is_over" from="Game Piece" to="." method="_on_player_turn_end"]
+[connection signal="turn_is_over" from="Game Piece3" to="." method="_on_player_turn_end"]
+[connection signal="turn_is_over" from="Game Piece4" to="." method="_on_player_turn_end"]
+[connection signal="turn_is_over" from="Game Piece2" to="." method="_on_player_turn_end"]

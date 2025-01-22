@@ -1,0 +1,152 @@
+[gd_scene load_steps=11 format=3 uid="uid://bwjct7is63sgs"]
+
+[ext_resource type="Texture2D" uid="uid://dqq0p6wa58v1p" path="res://Assets/game_piece.png" id="1_ui2ra"]
+[ext_resource type="Script" path="res://Scripts/game_piece.gd" id="2_asem8"]
+
+[sub_resource type="Animation" id="Animation_leam0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_kq5xt"]
+resource_name = "gray"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_t7sp1"]
+resource_name = "green"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_nvse4"]
+resource_name = "orange"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_aw8no"]
+resource_name = "purple"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_milo6"]
+resource_name = "red"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4q8e"]
+_data = {
+"RESET": SubResource("Animation_leam0"),
+"gray": SubResource("Animation_kq5xt"),
+"green": SubResource("Animation_t7sp1"),
+"orange": SubResource("Animation_nvse4"),
+"purple": SubResource("Animation_aw8no"),
+"red": SubResource("Animation_milo6")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhjrx"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("2_asem8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_ui2ra")
+hframes = 3
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_q4q8e")
+}
+autoplay = "gray"
+
+[node name="Button" type="Button" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_fhjrx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fhjrx")
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

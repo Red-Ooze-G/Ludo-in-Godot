@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://csg65hqewa1nh"]
+
+[ext_resource type="Script" path="res://Scripts/game_selection.gd" id="1_cbvl6"]
+[ext_resource type="Texture2D" uid="uid://dmhhg75mjt067" path="res://Assets/Game Selection/minimal_board.png" id="1_fw654"]
+[ext_resource type="PackedScene" uid="uid://bbcjmw6iq7vcv" path="res://Scenes/player_selection_icon.tscn" id="2_hytbh"]
+[ext_resource type="PackedScene" uid="uid://ctlqj18kfwsdp" path="res://Scenes/nag_window.tscn" id="4_v6ks4"]
+
+[node name="Game Selection" type="Node2D"]
+script = ExtResource("1_cbvl6")
+metadata/_edit_lock_ = true
+
+[node name="MinimalBoard" type="Sprite2D" parent="."]
+position = Vector2(490, 490)
+texture = ExtResource("1_fw654")
+metadata/_edit_lock_ = true
+
+[node name="Player 1 Icon" parent="." instance=ExtResource("2_hytbh")]
+position = Vector2(188, 192)
+game_piece_color = "red"
+player_type_id = 1
+
+[node name="Player 2 Icon" parent="." instance=ExtResource("2_hytbh")]
+position = Vector2(786, 193)
+game_piece_color = "purple"
+
+[node name="Player 3 Icon" parent="." instance=ExtResource("2_hytbh")]
+position = Vector2(189, 789)
+game_piece_color = "orange"
+
+[node name="Player 4 Icon" parent="." instance=ExtResource("2_hytbh")]
+position = Vector2(785, 791)
+game_piece_color = "green"
+player_type_id = 1
+
+[node name="START" type="Button" parent="."]
+offset_left = 386.0
+offset_top = 394.0
+offset_right = 597.0
+offset_bottom = 578.0
+text = "START
+GAME"
+
+[node name="NAG Window" parent="." instance=ExtResource("4_v6ks4")]
+offset_left = 83.0
+offset_top = 351.0
+offset_right = 629.0
+offset_bottom = 541.0
+scale = Vector2(1.5, 1.5)
+
+[connection signal="pressed" from="START" to="." method="_on_start_pressed"]
