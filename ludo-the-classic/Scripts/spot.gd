@@ -78,7 +78,7 @@ func shrink_game_pieces() -> void:
 	for game_piece in connected_game_pieces:
 		
 		#Every 2 game pieces go to the top row of the tile, and the others go to the bottom row
-		y = self.position.y + (y_radius * .5 * sign)
+		y = self.position.y + (y_radius * .5 * y_sign)
 		game_piece.position.y = y
 		
 		#If the top or bottom have an odd-number of rows, then the offset should be different
